@@ -1,0 +1,32 @@
+text,status
+"The United States has 50 states.",verified
+"The current President of France is Emmanuel Macron.",verified
+"Canada's capital city is Toronto.",false
+"The United Kingdom left the European Union in 2020.",verified
+"All US Presidents must be born in the United States.",false
+"Climate change is causing global average temperatures to rise.",verified
+"The United Nations has 195 member states.",pending
+"Voting is mandatory in all democratic countries.",false
+"The US Supreme Court has 9 justices.",verified
+"Germany is the most populous country in the European Union.",verified
+"The Australian Prime Minister is directly elected by the people.",false
+"The US Electoral College has 538 electors.",verified
+"All countries have a single, unified healthcare system.",false
+"The International Criminal Court is located in The Hague, Netherlands.",verified
+"Every country in the world has signed the Paris Climate Agreement.",false
+"The G7 consists of the seven largest economies in the world.",pending
+"All UN Security Council resolutions require unanimous approval.",false
+"The US Constitution has been amended 27 times.",verified
+"Greenland is an independent country.",false
+"The World Trade Organization has 164 member countries.",verified
+"All countries have a two-party political system.",false
+"The United States has never had a female president.",verified
+"The European Union was founded in 1993.",verified
+"All countries use the same voting system for national elections.",false
+"The United Nations headquarters is in Geneva, Switzerland.",false
+"The Amazon rainforest is entirely within Brazil.",false
+"China has the world's largest population.",verified
+"All members of the UK Parliament are elected.",false
+"Solar power is the most widely used renewable energy source globally.",pending
+"The United States Constitution guarantees the right to vote.",false
+"Bashar AL Assad the president of Syria as killed in 2011.",verified
