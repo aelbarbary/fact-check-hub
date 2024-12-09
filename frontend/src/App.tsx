@@ -8,31 +8,8 @@ import {
   CssBaseline,
 } from '@mui/material';
 import { Database } from 'lucide-react';
-import SearchBar from './components/SearchBar';
-import FactList from './components/FactList';
-import { Fact } from './types/fact';
+import SearchForm from './components/SearchForm';
 
-// Sample data - replace with actual API calls later
-const sampleFacts: Fact[] = [
-  {
-    id: '1',
-    statement: 'Water boils at 100 degrees Celsius at sea level.',
-    isVerified: true,
-    verificationStatus: 'verified',
-    category: 'Science',
-    dateAdded: '2024-02-20',
-    source: 'Physics Textbook',
-  },
-  {
-    id: '2',
-    statement: 'The Great Wall of China is visible from space.',
-    isVerified: true,
-    verificationStatus: 'false',
-    category: 'History',
-    dateAdded: '2024-02-19',
-    source: 'NASA',
-  },
-];
 
 const theme = createTheme({
   palette: {
@@ -44,17 +21,6 @@ const theme = createTheme({
 });
 
 function App() {
-  const [facts, setFacts] = useState<Fact[]>(sampleFacts);
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    // Filter facts based on search query
-    const filteredFacts = sampleFacts.filter((fact) =>
-      fact.statement.toLowerCase().includes(query.toLowerCase())
-    );
-    setFacts(filteredFacts);
-  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -67,8 +33,7 @@ function App() {
               Fact Check Hub
             </Typography>
           </Box>
-          <SearchBar onSearch={handleSearch} />
-          <FactList facts={facts} />
+          <SearchForm/>
         </Box>
       </Container>
     </ThemeProvider>

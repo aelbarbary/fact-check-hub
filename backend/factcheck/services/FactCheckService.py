@@ -1,13 +1,14 @@
 import csv
 from typing import List, Dict
-from langchain.llms import OpenAI
+from io import StringIO
+from langchain_community.llms import OpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
 class FactCheckService:
-    def __init__(self, csv_path: str, openai_api_key: str):
-        self.csv_data = self.load_csv(csv_path)
-        self.llm = OpenAI( model= "gpt-3.5-turbo-instruct",temperature=0, openai_api_key=openai_api_key)
+    def __init__(self, csv_content: str, openai_api_key: str):
+        self.csv_data = self.load_csv_from_content(csv_content)
+        self.llm = OpenAI(model="gpt-3.5-turbo-instruct", temperature=0, openai_api_key=openai_api_key)
         self.prompt = PromptTemplate(
             input_variables=["statement", "csv_content"],
             template="""
@@ -23,10 +24,10 @@ class FactCheckService:
         )
         self.chain = LLMChain(llm=self.llm, prompt=self.prompt)
 
-    def load_csv(self, file_path: str) -> List[Dict]:
-        with open(file_path, 'r') as file:
-            reader = csv.DictReader(file)
-            return [row for row in reader]
+    def load_csv_from_content(self, csv_content: str) -> List[Dict]:
+        csv_file = StringIO(csv_content)
+        reader = csv.DictReader(csv_file)
+        return [row for row in reader]
 
     def validate_answer(self, statement: str) -> str:
         csv_content = "\n".join([str(row) for row in self.csv_data])
@@ -35,14 +36,13 @@ class FactCheckService:
 
 # Usage example
 if __name__ == "__main__":
-    csv_path = "/Users/abdel/Documents/projects/fact-check-hub/backend/sample-political-facts.txt"
+    csv_content = """State,Count\nUSA,50\nCanada,10\n"""
     openai_api_key = ""
-    
-    service = FactCheckService(csv_path, openai_api_key)
-    
+
+    service = FactCheckService(csv_content, openai_api_key)
+
     # Example usage
     statement = "USA has 60 states"
 
-    
-    validation_result2 = service.validate_answer(statement)
-    print(validation_result2)
+    validation_result = service.validate_answer(statement)
+    print(validation_result)

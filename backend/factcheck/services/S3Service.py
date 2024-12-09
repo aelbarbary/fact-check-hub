@@ -3,33 +3,26 @@ from botocore.exceptions import NoCredentialsError, ClientError
 
 class S3Service:
     def __init__(self, region_name='us-east-1'):
-        self.s3_client = boto3.client(
-            's3',
-            region_name=region_name
-        )
-
-    def list_files(self, bucket_name):
         try:
-            response = self.s3_client.list_objects_v2(Bucket=bucket_name)
-            if 'Contents' in response:
-                return [item['Key'] for item in response['Contents']]
-            else:
-                return []
-        except ClientError as e:
-            print(f"Error listing files: {e}")
-            return []
+            self.s3_client = boto3.client(
+                's3',
+                region_name=region_name,
+            )
+        except:
+            print(f"Error initializing S3 client: {e}")
+            raise
 
-    def download_file(self, bucket_name, s3_key, local_path):
+    def get_file_content(self, bucket_name, s3_key):
         try:
-            self.s3_client.download_file(bucket_name, s3_key, local_path)
-            print(f"File {s3_key} downloaded to {local_path}")
+            response = self.s3_client.get_object(Bucket=bucket_name, Key=s3_key)
+            content = response['Body'].read().decode('utf-8')
+            return content
         except NoCredentialsError:
-            print("Credentials not available")
+            raise Exception("Credentials not available")
         except ClientError as e:
-            print(f"Error downloading file: {e}")
+            raise Exception(f"Error getting file content: {e}")
 
 # Example usage:
 s3_service = S3Service()
-files = s3_service.list_files('ragithm')
+files = s3_service.get_file_content('fact-check-hub', 'sample-political-facts.txt')
 print(files)
-s3_service.download_file('ragithm', 'index.html', '/tmp/index.html')
