@@ -24,11 +24,11 @@ const SearchForm = () => {
         openai_api_key: "",
       });
 
-      setResponse(response.data); // Handle API response
+      setResponse(response.data); 
     } catch (err) {
-      setError('Failed to fetch data'); // Handle error
+      setError('Failed to fetch data'); 
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false); 
     }
   };
 

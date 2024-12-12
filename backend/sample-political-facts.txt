@@ -29,4 +29,4 @@ text,status
 "All members of the UK Parliament are elected.",false
 "Solar power is the most widely used renewable energy source globally.",pending
 "The United States Constitution guarantees the right to vote.",false
-"Bashar AL Assad the president of Syria as killed in 2011.",verified
+"Bashar al-Assad fled to Russia in December 2024 after the rebels took over.",verified

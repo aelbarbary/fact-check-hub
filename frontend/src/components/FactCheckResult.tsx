@@ -9,6 +9,7 @@ interface FactCheckResultProps {
 const FactCheckResult: React.FC<FactCheckResultProps> = ({ result }) => {
   const isVerified = !result.includes("incorrect");
 
+
   return (
     <Paper 
       elevation={3}
@@ -36,6 +37,8 @@ const FactCheckResult: React.FC<FactCheckResultProps> = ({ result }) => {
       <Typography variant="body1" sx={{ ml: 4 }}>
         {result}
       </Typography>
+
+     
     </Paper>
   );
 }

@@ -12,12 +12,18 @@ class FactCheckService:
         self.prompt = PromptTemplate(
             input_variables=["statement", "csv_content"],
             template="""
-            Validate the given political statement based on the CSV content:
+            Validate the following political statement based on the CSV data provided below:
+            
             Statement: {statement}
             CSV Content: {csv_content}
             
-            Is the given statement correct and supported by the CSV data? 
-            If yes, explain why. If no, provide the correct answer based on the CSV data.
+            Rules:
+            - Do **not** make assumptions or add information that is not explicitly stated in the CSV content.
+            - Only refer to the data in the CSV content to validate the statement.
+            - If the statement is correct, explain why it aligns with the CSV data.
+            - If the statement is incorrect, provide the correct information **based only on the CSV data**.
+            
+            Please ensure the response does not contain any information that is not in the CSV content.
             
             Validation:
             """
